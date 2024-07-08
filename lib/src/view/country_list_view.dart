@@ -18,6 +18,8 @@ class CountryListView extends StatefulWidget {
 
   final List<String>? countryPreferred;
 
+  final List<String>? regionPreferred;
+
   final CountryThemeData? countryTheme;
 
   final bool searchBarAutofocus;
@@ -52,6 +54,7 @@ class CountryListView extends StatefulWidget {
     required this.onSelect,
     this.remove,
     this.countryPreferred,
+    this.regionPreferred,
     this.countrySorter,
     this.showPhoneCode = false,
     this.countryTheme,
@@ -114,6 +117,11 @@ class _CountryListViewState extends State<CountryListView> {
     if (widget.countryPreferred != null) {
       _countryPreferredList =
           _countryProvider.findCountriesByCode(widget.countryPreferred!);
+    }
+
+    if (widget.regionPreferred != null) {
+      _countryPreferredList =
+          _countryProvider.findCountriesByRegion(widget.regionPreferred!);
     }
 
     if (widget.remove != null) {

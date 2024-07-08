@@ -22,14 +22,19 @@ class CountryProvider {
   Country? findByCode(String? code) {
     final uppercaseCode = code?.toUpperCase();
     return _countries
-        .firstWhereOrNull((country) => country.countryCode == uppercaseCode);
+        .firstWhereOrNull((country) => country.countryCode == uppercaseCode && country.region == "Africa");
+  }
+
+  Country? findByRegion(String? region) {
+    return _countries
+        .firstWhereOrNull((country) => country.region == Africa);
   }
 
   /// Finds a country by its name.
   ///
   /// Returns `null` if no country is found with the given name.
   Country? findByName(String? name) {
-    return _countries.firstWhereOrNull((country) => country.name == name);
+    return _countries.firstWhereOrNull((country) => country.name == name && country.region == "Africa");
   }
 
   /// Finds a list of countries by their country codes.
@@ -41,6 +46,19 @@ class CountryProvider {
     final List<Country> countries = [];
     for (final code in _codes) {
       final Country? country = findByCode(code);
+      if (country != null) {
+        countries.add(country);
+      }
+    }
+    return countries;
+  }
+
+  List<Country> findCountriesByRegion(List<String> region) {
+    final List<String> _codes =
+    region.map((code) => code).toList();
+    final List<Country> countries = [];
+    for (final code in _codes) {
+      final Country? country = findByRegion(code);
       if (country != null) {
         countries.add(country);
       }

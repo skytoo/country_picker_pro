@@ -103,7 +103,7 @@ class CountryDecoder {
   static Country _getFromPhoneCode(String phoneCode) {
     return Country.from(
       json: countryCodes.singleWhere(
-        (Map<String, dynamic> c) => c['e164_cc'] == phoneCode,
+        (Map<String, dynamic> c) => c['e164_cc'] == phoneCode && c['region'] == "Africa",
       ),
     );
   }
@@ -111,7 +111,7 @@ class CountryDecoder {
   static Country _getFromCode(String countryCode) {
     return Country.from(
       json: countryCodes.singleWhere(
-        (Map<String, dynamic> c) => c['iso2_cc'] == countryCode,
+        (Map<String, dynamic> c) => c['iso2_cc'] == countryCode && c['region'] == "Africa",
       ),
     );
   }
