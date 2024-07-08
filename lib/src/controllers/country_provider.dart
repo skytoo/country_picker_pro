@@ -9,7 +9,7 @@ class CountryProvider {
   /// Constructs a new [CountryProvider] and initializes the list of countries.
   CountryProvider()
       : _countries =
-            countryCodes.map((country) => Country.from(json: country)).toList();
+            countryCodes.map((country) => Country.from(json: country)).where((c)=>c.region == "Africa").toList();
 
   /// Returns a list of all countries.
   List<Country> getAll() {
